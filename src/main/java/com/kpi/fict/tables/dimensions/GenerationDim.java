@@ -3,7 +3,7 @@ package com.kpi.fict.tables.dimensions;
 import lombok.Data;
 
 @Data
-public class AgeIntervalDim {
+public class GenerationDim {
     private Long id;
-    private String ageInterval;
+    private String name;
 }

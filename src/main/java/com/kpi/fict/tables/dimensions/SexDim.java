@@ -1,5 +1,9 @@
 package com.kpi.fict.tables.dimensions;
 
-public class SexDim {
+import lombok.Data;
 
+@Data
+public class SexDim {
+    private Long id;
+    private String name;
 }
