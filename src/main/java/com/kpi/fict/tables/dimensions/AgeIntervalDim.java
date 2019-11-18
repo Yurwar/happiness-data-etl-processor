@@ -5,5 +5,5 @@ import lombok.Data;
 @Data
 public class AgeIntervalDim {
     private Long id;
-    private String ageInterval;
+    private String name;
 }
