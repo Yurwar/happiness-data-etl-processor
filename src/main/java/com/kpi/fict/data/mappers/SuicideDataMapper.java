@@ -16,7 +16,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SuicideDataMapper {
+public class SuicideDataMapper implements DataMapper {
 
     private final static String COUNTRY_FIELD = "country";
     private final static String YEAR_FIELD = "year";
@@ -29,8 +29,9 @@ public class SuicideDataMapper {
     private final static String GDP_PER_CAPITA_FIELD = "gdp_per_capita ($)";
     private final static String GENERATION_FIELD = "generation";
 
-    public static final String DATASET_FILE_PATH = "./src/main/resources/datasource/suicide-rates.csv";
+    private static final String DATASET_FILE_PATH = "./src/main/resources/datasource/suicide-rates.csv";
 
+    @Override
     public List<Fact> getInfo() throws IOException {
         return extractDataFromDataset(getParser());
     }
@@ -43,7 +44,7 @@ public class SuicideDataMapper {
         List<Fact> resultList = new ArrayList<>();
 
         csvRecords.forEach(record -> resultList.add(mapDataToEntity(record)));
- 
+
         return resultList;
     }
 
