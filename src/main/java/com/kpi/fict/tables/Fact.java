@@ -1,6 +1,7 @@
 package com.kpi.fict.tables;
 
 import com.kpi.fict.tables.dimensions.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Fact {
     private Long factId;
     private YearDim yearValue;
