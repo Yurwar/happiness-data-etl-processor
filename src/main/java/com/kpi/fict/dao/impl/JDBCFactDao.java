@@ -62,14 +62,14 @@ public class JDBCFactDao implements FactDao {
     }
 
     private void fillInsertionFactQuery(PreparedStatement preparedStatement, Fact fact) throws SQLException {
-        preparedStatement.setLong(1, dimensionDao.createYearDimension(fact.getYearValue()));
-        preparedStatement.setLong(2, dimensionDao.createMonthDimension(fact.getMonthValue()));
-        preparedStatement.setLong(3, dimensionDao.createRegionDimension(fact.getRegionValue()));
-        preparedStatement.setLong(4, dimensionDao.createCountryDimension(fact.getCountryValue()));
-        preparedStatement.setLong(5, dimensionDao.createCityDimension(fact.getCityValue()));
-        preparedStatement.setLong(6, dimensionDao.createSexDimension(fact.getSexValue()));
-        preparedStatement.setLong(7, dimensionDao.createAgeIntervalDimension(fact.getAgeIntervalValue()));
-        preparedStatement.setLong(8, dimensionDao.createGenerationDimension(fact.getGenerationValue()));
+        preparedStatement.setLong(1, fact.getYearValue().getId());
+        preparedStatement.setLong(2, fact.getMonthValue().getId());
+        preparedStatement.setLong(3, fact.getRegionValue().getId());
+        preparedStatement.setLong(4, fact.getCountryValue().getId());
+        preparedStatement.setLong(5, fact.getCityValue().getId());
+        preparedStatement.setLong(6, fact.getSexValue().getId());
+        preparedStatement.setLong(7, fact.getAgeIntervalValue().getId());
+        preparedStatement.setLong(8, fact.getGenerationValue().getId());
         preparedStatement.setInt(9, fact.getSuicideNumber());
         preparedStatement.setInt(10, fact.getPopulation());
         preparedStatement.setDouble(11, fact.getCountryHDI());
