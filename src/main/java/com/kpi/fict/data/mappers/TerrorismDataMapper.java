@@ -1,5 +1,7 @@
 package com.kpi.fict.data.mappers;
 
+import com.kpi.fict.data.mappers.utils.Pair;
+import com.kpi.fict.data.mappers.utils.TerrorismCollector;
 import com.kpi.fict.tables.Fact;
 import com.kpi.fict.tables.dimensions.*;
 import com.kpi.fict.utils.DimensionsMapper;
@@ -13,7 +15,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -72,13 +73,13 @@ public class TerrorismDataMapper implements DataMapper {
     private List<Fact> aggregateByDimensions(List<Fact> data) {
         List<Fact> result = new ArrayList<>();
 
-        Map<YearDim, Map<MonthDim, Map<RegionDim, Map<CountryDim, Map<CityDim, Integer>>>>> fuckingMap = data.parallelStream()
+        Map<YearDim, Map<MonthDim, Map<RegionDim, Map<CountryDim, Map<CityDim, Pair<Integer, Integer>>>>>> fuckingMap = data.parallelStream()
                 .collect(groupingBy(Fact::getYearValue,
                         groupingBy(Fact::getMonthValue,
                                 groupingBy(Fact::getRegionValue,
                                         groupingBy(Fact::getCountryValue,
                                                 groupingBy(Fact::getCityValue,
-                                                        Collectors.summingInt(Fact::getKilledInAttacks)))))));
+                                                        new TerrorismCollector()))))));
 
         fuckingMap.keySet()
                 .forEach(yearKey -> fuckingMap.get(yearKey).keySet()
@@ -92,7 +93,8 @@ public class TerrorismDataMapper implements DataMapper {
                                                             .regionValue(regionKey)
                                                             .countryValue(countryKey)
                                                             .cityValue(cityKey)
-                                                            .killedInAttacks(fuckingMap.get(yearKey).get(monthKey).get(regionKey).get(countryKey).get(cityKey))
+                                                            .terroristsAttacks(fuckingMap.get(yearKey).get(monthKey).get(regionKey).get(countryKey).get(cityKey).getFirstValue())
+                                                            .killedInAttacks(fuckingMap.get(yearKey).get(monthKey).get(regionKey).get(countryKey).get(cityKey).getSecondValue())
                                                             .build();
 
                                                     result.add(fact);

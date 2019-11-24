@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HappinessDataMapper implements DataMapper {
-    private final static String REGION_FIELD = "Region";
     private final static String COUNTRY_FIELD = "Country";
     private final static String HAPPINESS_SCORE_FIELD = "Happiness Score";
+    private final static String HAPPINESS_SCORE_FIELD_FOR_2017 = "Happiness.Score";
     private final static String FREEDOM_SCORE_FIELD = "Freedom";
     private final static String TRUST_SCORE_FIELD = "Trust (Government Corruption)";
+    private final static String TRUST_SCORE_FIELD_FOR_2017 = "Trust..Government.Corruption.";
 
     private static final String DATASET_FILE_PATH_YEAR_2015 = "./src/main/resources/datasource/world-happiness/world-happiness-2015.csv";
     private static final String DATASET_FILE_PATH_YEAR_2016 = "./src/main/resources/datasource/world-happiness/world-happiness-2016.csv";
@@ -27,13 +28,13 @@ public class HappinessDataMapper implements DataMapper {
     private static final String YEAR_2016 = "2016";
     private static final String YEAR_2017 = "2017";
 
-    // 315
+    // 470
     @Override
     public List<Fact> getInfo() throws IOException {
         List<Fact> resultFacts = new ArrayList<>();
         resultFacts.addAll(extractDataFromDataset(getParser(DATASET_FILE_PATH_YEAR_2015), YEAR_2015));
         resultFacts.addAll(extractDataFromDataset(getParser(DATASET_FILE_PATH_YEAR_2016), YEAR_2016));
-//        resultFacts.addAll(extractDataFromDataset(getParser(DATASET_FILE_PATH_YEAR_2017), YEAR_2017));
+        resultFacts.addAll(extractDataFromDataset(getParser(DATASET_FILE_PATH_YEAR_2017), YEAR_2017));
         return resultFacts;
     }
 
@@ -54,12 +55,11 @@ public class HappinessDataMapper implements DataMapper {
 
     private Fact mapDataToEntity(CSVRecord record, String year) {
         return Fact.builder()
-                .regionValue(DimensionsMapper.getRegion(record.get(REGION_FIELD)))
                 .countryValue(DimensionsMapper.getCountry(record.get(COUNTRY_FIELD)))
                 .yearValue(DimensionsMapper.getYear(year))
-                .happinessScore(Float.parseFloat(record.get(HAPPINESS_SCORE_FIELD)))
+                .happinessScore(Float.parseFloat(year.equals(YEAR_2017) ? record.get(HAPPINESS_SCORE_FIELD_FOR_2017) : record.get(HAPPINESS_SCORE_FIELD)))
                 .freedomScore(Float.parseFloat(record.get(FREEDOM_SCORE_FIELD)))
-                .trustScore(Float.parseFloat(record.get(TRUST_SCORE_FIELD)))
+                .trustScore(Float.parseFloat(year.equals(YEAR_2017) ? record.get(TRUST_SCORE_FIELD_FOR_2017) : record.get(TRUST_SCORE_FIELD)))
                 .build();
     }
 }

@@ -26,7 +26,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, ageIntervalDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -44,7 +52,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, cityDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -62,7 +78,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, countryDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -80,7 +104,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, generationDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -98,7 +130,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, monthDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -116,7 +156,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, regionDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -134,7 +182,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, sexDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {
@@ -152,7 +208,15 @@ public class JDBCDimensionDao implements DimensionDao {
                      Statement.RETURN_GENERATED_KEYS)) {
 
             preparedStatement.setString(1, yearDim.getName());
-            return preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
+
+            ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+
+            if (generatedKeys.next()) {
+                return generatedKeys.getInt(1);
+            } else {
+                throw new DaoException();
+            }
 
         } catch (SQLException e) {
             if (isUniqueConstraintException(e)) {

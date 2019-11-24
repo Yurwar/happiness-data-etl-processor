@@ -1,9 +1,10 @@
 package com.kpi.fict.utils;
 
+import com.kpi.fict.tables.Fact;
 import com.kpi.fict.tables.dimensions.*;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DimensionsMapper {
     private static Map<String, AgeIntervalDim> ageIntervalDimMap = new HashMap<>();
@@ -109,5 +110,37 @@ public class DimensionsMapper {
         yearDimMap.put(name, result);
 
         return result;
+    }
+
+    public static Collection<AgeIntervalDim> getAgeIntervalDimList() {
+        return ageIntervalDimMap.values();
+    }
+
+    public static Collection<CityDim> getCityDimList() {
+        return cityDimMap.values();
+    }
+
+    public static Collection<CountryDim> getCountryDimList() {
+        return countryDimMap.values();
+    }
+
+    public static Collection<GenerationDim> getGenerationDimList() {
+        return generationDimMap.values();
+    }
+
+    public static Collection<MonthDim> getMonthDimList() {
+        return monthDimMap.values();
+    }
+
+    public static Collection<RegionDim> getRegionDimList() {
+        return regionDimMap.values();
+    }
+
+    public static Collection<SexDim> getSexDimList() {
+        return sexDimMap.values();
+    }
+
+    public static Collection<YearDim> getYearDimList() {
+        return yearDimMap.values();
     }
 }
